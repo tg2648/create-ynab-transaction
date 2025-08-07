@@ -1,8 +1,10 @@
 import functions_framework
+import flask
+from flask import make_response
 
 
 @functions_framework.http
-def create_transaction(request):
+def create_transaction(request: flask.Request) -> flask.Response:
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.
@@ -16,4 +18,5 @@ def create_transaction(request):
         Functions, see the `Writing HTTP functions` page.
         <https://cloud.google.com/functions/docs/writing/http#http_frameworks>
     """
-    return 'Hello World!'
+    resp = make_response(f'Hello {request.query_string}', 200)
+    return resp
