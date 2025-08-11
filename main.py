@@ -42,7 +42,7 @@ def get_secret(secret_id: str, project_id: str, version: str = "latest") -> str:
 load_dotenv()
 
 project_id = os.environ.get("GCP_PROJECT_ID", "")
-ynab_secrets_raw = get_secret("ynab", project_id)
+ynab_secrets_raw = os.environ.get("YNAB_SECRETS", get_secret("ynab", project_id))
 ynab_secrets = json.loads(ynab_secrets_raw)
 
 BUDGET_ID = ynab_secrets.get("budget_id", "")
