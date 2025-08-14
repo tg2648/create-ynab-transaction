@@ -100,7 +100,7 @@ def parse_transaction(transactionDto: TransactionPostDto) -> ynab.NewTransaction
     transaction = ynab.NewTransaction(
         account_id=get_account_id_from_card_name(transactionDto.card),
         date=parse_date(transactionDto.date),
-        amount=parse_amount(transactionDto.amount),
+        amount=-1 * parse_amount(transactionDto.amount),
         payee_name=transactionDto.merchant,
         category_id=get_category_id_from_merchant_name(transactionDto.merchant),
     )
